@@ -20,11 +20,12 @@ app.get("/cities",function(req,res){
 });
 
 app.post("/cities",function(req,res){
+    // console.log(req.body);
     var newCity = req.body.cityName;
     var imageUrl = req.body.img;
     var city = {name:newCity, img:imageUrl};
-    console.log(newCity);
-    console.log(imageUrl);
+    // console.log(newCity);
+    // console.log(imageUrl);
     cities.push(city);
     res.redirect("/cities");
 });
