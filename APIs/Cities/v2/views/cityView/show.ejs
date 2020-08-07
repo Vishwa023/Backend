@@ -1,0 +1,18 @@
+<%- include("../partials/header.ejs") %>
+    
+    <!-- <%= city._id %>
+    <%= city.comments %> -->
+    <h1><%= city.name %></h1>
+
+    <img src="<%= city.img %>">
+
+    <p><%= city.description %></p>
+
+    <% city.comments.forEach(function(comment){ %>
+
+        <p><%= comment %></p>
+        <!-- <p><%= comment.author %></p> -->
+
+    <% }); %>
+
+<%- include("../partials/footer.ejs") %>
