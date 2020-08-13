@@ -15,7 +15,7 @@ var express       = require("express"),
 mongoose.connect("mongodb://localhost/cities"); 
 app.set("view engine","ejs");
 app.use(bodyParser.urlencoded({extended:true}));
-
+app.use(express.static(__dirname + '/public'));
 // creating city object manually
 
 // City.create({
@@ -32,6 +32,14 @@ app.use(bodyParser.urlencoded({extended:true}));
 //     }
 // });
 
+// Removing All cities
+
+// City.remove({}, function(err){
+//     if(err)
+//         console.log(err);
+//     else   
+//         console.log("Cities Removed");
+// });
 
 // HomePage route
 app.get("/",function(req,res){
@@ -84,9 +92,8 @@ app.get("/cities/:id",function(req,res){
             console.log(err);
         }
         else{
-            console.log(foundCity);
-            // if(foundCity.name != null)
-                res.render("cityView/show", { city : foundCity });
+            // console.log(foundCity.comments.text);ss
+            res.render("cityView/show", { city : foundCity });
         }
     });
 });
@@ -130,6 +137,7 @@ app.post("/cities/:id/comments", function(req, res){
                     else{
                         foundCity.comments.push(comment);
                         foundCity.save();
+                        comment.save();
                         console.log(foundCity._id);
                         res.redirect("/cities/" + foundCity._id);
                     }

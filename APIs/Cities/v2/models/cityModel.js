@@ -6,8 +6,8 @@ var citiesSchema = new mongoose.Schema({
     description:String,
     comments : [
         {
-            type : mongoose.Schema.Types.ObjectId,
-            ref : "Comment"
+            text : String,
+            author : String
         }
     ]
 });
